@@ -173,7 +173,7 @@ def reproduction(mom, dad):
         nn = [n]
 
         for i in range(1, numbercut):
-            # что-то типо разрезания
+            #разрезание
             g = randint(nn[i - 1] + 1, n_way)
             if g < n_way:
                 nn.append(g)
@@ -186,7 +186,7 @@ def reproduction(mom, dad):
 
         for i in range(1, len(nn)):
             wm = mway[nn[i - 1]: nn[i]]
-            # ну тут у нас типа мутации на выделенном отрезке
+            #мутации на выделенном отрезке
             for h in range(randint(1, len(wm))):
                 c = randint(0, len(wm) - 1)
                 spi = ['U', 'D', 'R']
@@ -194,7 +194,7 @@ def reproduction(mom, dad):
                 wm[c] = choice(spi)
 
             wd = dway[nn[i - 1]: nn[i]]
-            # ну тут у нас типа мутации на выделенном отрезке
+            #мутации на выделенном отрезке
             for h in range(randint(1, len(wd))):
                 c = randint(0, len(wd) - 1)
                 spi = ['U', 'D', 'R']
