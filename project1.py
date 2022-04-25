@@ -248,3 +248,4 @@ while pobeda != True:
     c = reproduction(d[0], d[1])
 if pobeda == True:
     d = selection(c)
+print(n_gen)
