@@ -1,4 +1,3 @@
-
 from time import *
 from random import choice
 from random import randint
@@ -49,13 +48,16 @@ def drawmap():
 
 
 # отрисовка машины в текущем положении
-def drawcar(location):
+def drawcar(location, m):
     figure = Rectangle(Point(location['x'] * RIB, location['y'] * RIB),
                        Point(location['x'] * RIB + RIB, location['y'] * RIB + RIB))
     figure.setOutline('red')
     figure.setFill('red')
     figure.draw(win)
-    time.sleep(0.05)
+    if m == 0:
+        time.sleep(0.05)
+    elif m == 1:
+        time.sleep(2)
     figure.undraw()
 
 
@@ -88,7 +90,7 @@ def journey(way,m):
         if way[i] == 'R':
             location['x'] += 1
             if m == 1:
-                drawcar(location)
+                drawcar(location,0)
             if int(plain[location['y']][location['x']]) == 1:
                 location['x'] -= 1
                 break
@@ -96,7 +98,7 @@ def journey(way,m):
         elif way[i] == 'U':
             location['y'] -= 1
             if m == 1:
-                drawcar(location)
+                drawcar(location,0)
             if int(plain[location['y']][location['x']]) == 1:
                 location['y'] += 1
                 break
@@ -104,14 +106,16 @@ def journey(way,m):
         elif way[i] == 'D':
             location['y'] += 1
             if m == 1:
-                drawcar(location)
+                drawcar(location,0)
             if int(plain[location['y']][location['x']]) == 1:
                 location['y'] -= 1
                 break
         # если новая координата - стена или финиш, то выходим из цикла
         if plain[location['y']][location['x']] == 2:
             print(location)
+            drawcar(location,1)
             print('WIN')
+
             pobeda = True
             break
 
@@ -173,7 +177,7 @@ def reproduction(mom, dad):
         nn = [n]
 
         for i in range(1, numbercut):
-            #разрезание
+            # что-то типо разрезания
             g = randint(nn[i - 1] + 1, n_way)
             if g < n_way:
                 nn.append(g)
